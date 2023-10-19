@@ -1,4 +1,4 @@
-import { Directive } from '@angular/core';
+import {Directive, Input} from '@angular/core';
 import {AbstractControl, NG_VALIDATORS, ValidationErrors, Validator} from "@angular/forms";
 
 @Directive({
@@ -10,9 +10,10 @@ import {AbstractControl, NG_VALIDATORS, ValidationErrors, Validator} from "@angu
 export class PasswordValidatorDirective implements Validator{
 
   constructor() { }
+  @Input('passwordValidator') pattern='';
 
   validate(control: AbstractControl): ValidationErrors | null {
-    const result = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(control.value);
+    const result = new RegExp(this.pattern).test(control.value);
     return result ? null : {pattern: {value: control.value}};
   }
 }
