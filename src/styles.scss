@@ -33,3 +33,13 @@ app-r-form, app-td-form {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
+
+input.ng-invalid.ng-dirty,
+input.ng-invalid.ng-touched {
+  border-color: red;
+}
+
+input.ng-invalid.ng-dirty + label,
+input.ng-invalid.ng-touched + label {
+  color: red;
+}

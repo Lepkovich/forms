@@ -1,5 +1,12 @@
 import {Directive, Input} from '@angular/core';
-import {AbstractControl, NG_VALIDATORS, ValidationErrors, Validator} from "@angular/forms";
+import {AbstractControl, NG_VALIDATORS, ValidationErrors, Validator, ValidatorFn} from "@angular/forms";
+
+export function passwordValidator(pattern: string): ValidatorFn {
+  return   (control: AbstractControl): ValidationErrors | null => {
+    const result = new RegExp(pattern).test(control.value);
+    return result ? null : {pattern: {value: control.value}};
+  }
+}
 
 @Directive({
   selector: '[passwordValidator]',
@@ -13,7 +20,6 @@ export class PasswordValidatorDirective implements Validator{
   @Input('passwordValidator') pattern='';
 
   validate(control: AbstractControl): ValidationErrors | null {
-    const result = new RegExp(this.pattern).test(control.value);
-    return result ? null : {pattern: {value: control.value}};
+    return passwordValidator(this.pattern)(control);
   }
 }

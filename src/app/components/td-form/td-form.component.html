@@ -9,7 +9,7 @@
              required #email="ngModel" email emailExists [ngModelOptions]="{updateOn: 'blur'}"
              [class]="{'border-danger': email.invalid && (email.dirty || email.touched)}"
              [(ngModel)]="signInForm.email" placeholder="name@example.com">
-      <label for="floatingInput" [class]="{'text-danger': email.invalid && (email.dirty || email.touched)}">Email address</label>
+      <label for="floatingInput">Email address</label>
       <div *ngIf="email.invalid && (email.dirty || email.touched)">
         <div class="text-danger" *ngIf="email.errors?.['required']">
           Email is required.
@@ -27,7 +27,8 @@
              passwordValidator="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"
              #password="ngModel"
              [class]="{'border-danger': password.invalid && (password.dirty || password.touched)}">
-      <label for="floatingPassword" [class]="{'text-danger': password.invalid && (password.dirty || password.touched)}">Password</label>
+      <label for="floatingPassword">Password</label>
+
       <div *ngIf="password.invalid && (password.dirty || password.touched)">
         <div class="text-danger" *ngIf="password.errors?.['required']">
           Password is required.
