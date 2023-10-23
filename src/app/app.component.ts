@@ -14,8 +14,8 @@ export class AppComponent {
     lastName: ['',[Validators.required]],
     username: ['',[Validators.required, Validators.pattern('^[a-zA-Z]+$')]],
     email: ['', Validators.email],
-    address: ['', [Validators.required, Validators.minLength(10), CustomValidators.addressNotSameValidator]],
-    addressSecond: ['', CustomValidators.addressNotSameValidator],
+    address: ['', [Validators.required, Validators.minLength(10)]],
+    addressSecond: [''],
     country: ['',[Validators.required]],
     state: ['',[Validators.required]],
     zip: ['',[Validators.required]],
@@ -30,7 +30,7 @@ export class AppComponent {
         cvv: ['', [Validators.required, CustomValidators.cvvValidator]]
       })
     })
-  });
+  }, {validators: CustomValidators.addressNotSameValidator});
 
   get paymentName() {
     return this.checkoutForm.get('payment')?.get('card')?.get('name');

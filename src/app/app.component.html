@@ -131,11 +131,12 @@
               <input type="text" class="form-control" formControlName="addressSecond" id="address2"
                      placeholder="Apartment or suite">
             </div>
-<!--            делаю тут сравнение двух адресов-->
-            <div class="invalid-feedback" *ngIf="checkoutForm.errors?.['addressIsTheSame']">
-             <!--&& (checkoutForm.get('addressSecond')?.touched || checkoutForm.get('addressSecond')?.dirty) && checkoutForm.errors?.['addressIsTheSame']">-->
-              Address 2 should not be the same
-            </div>
+
+              <!--            делаю тут сравнение двух адресов-->
+              <div class="invalid-feedback" *ngIf="(checkoutForm.get('address')?.touched || checkoutForm.get('address')?.dirty) && checkoutForm.errors?.['addressIsTheSame']">
+                Address 2 should not be the same as Address
+              </div>
+
 
             <div class="col-md-5">
               <label for="country" class="form-label">Country</label>
