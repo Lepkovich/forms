@@ -13,4 +13,16 @@ export class CustomValidators {
     const result = /^[0-9]{3,4}$/.test(control.value);
     return result ? null : {cvv: {value: control.value}};
   }
+  static addressNotSameValidator(control: AbstractControl) : ValidationErrors | null {
+    const address = control.get('address');
+    const addressSecond = control.get('addressSecond');
+    if (address) {
+      console.log(address.value)
+    }
+    if (addressSecond) {
+      console.log(addressSecond.value)
+    }
+
+    return address && addressSecond && address.value === addressSecond.value ? {addressIsTheSame: true} : null;
+  }
 }
